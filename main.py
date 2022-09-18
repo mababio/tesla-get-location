@@ -1,6 +1,6 @@
 #import teslapy
 import json
-import tesla_mababio as teslapy
+import teslapy
 
 def tesla_get_location(request):
     with teslapy.Tesla('REMOVED') as tesla:
