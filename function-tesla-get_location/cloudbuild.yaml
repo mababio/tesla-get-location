@@ -6,8 +6,8 @@ steps:
   - deploy
   - function-tesla-get_location
   - --region=us-east4
-  - --service_account_email=service-account-wyze-function@ensure-dev-zone.iam.gserviceaccount.com
-  - --entry_point=tesla_get_location
+  - --service-account=service-account-wyze-function@ensure-dev-zone.iam.gserviceaccount.com
+  - --entry-point=tesla_get_location
   - --source=.
   - --trigger-http
   - --runtime=python39
