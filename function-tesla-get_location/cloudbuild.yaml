@@ -9,5 +9,5 @@ steps:
   - --source=.
   - --trigger-http
   - --runtime=python39
-- options:
+options:
   logging: CLOUD_LOGGING_ONLY
