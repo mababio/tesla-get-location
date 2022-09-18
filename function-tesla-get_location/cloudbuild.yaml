@@ -1,0 +1,11 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud
+  - functions
+  - deploy
+  - function-tesla-get_location
+  - --region=us-east4
+  - --source=.
+  - --trigger-http
+  - --runtime=python39
