@@ -1,4 +1,3 @@
-os
 ast
 json
 time
@@ -7,3 +6,10 @@ hashlib
 logging
 pkgutil
 webbrowser
+urlparse
+urllib
+requests
+requests_oauthlib
+requests.exceptions
+oauthlib
+websocket
