@@ -1,15 +1,1 @@
-ast
-json
-time
-base64
-hashlib
-logging
-pkgutil
-webbrowser
-urlparse
-urllib
-requests
-requests_oauthlib
-requests.exceptions
-oauthlib
-websocket
+teslapy
