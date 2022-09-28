@@ -19,3 +19,4 @@ def tesla_get_location(request):
         return json_data
     except Exception as e:
         logger.error("tesla_get_location::::: Issue getting location::::: " + str(e))
+        raise
