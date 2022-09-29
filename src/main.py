@@ -1,16 +1,25 @@
 import teslapy
 import json
+from logs import logger
 
 
-def tesla_get_location(request):
+def get_tesla_location():
     with teslapy.Tesla('REMOVED') as tesla:
         vehicles = tesla.vehicle_list()
         vehicles[0].sync_wake_up()
-        tesla_data = vehicles[0].api('VEHICLE_DATA')['response']['drive_state']
+        return vehicles[0].api('VEHICLE_DATA')['response']['drive_state']
+
+
+def tesla_get_location(request):
+    tesla_data = get_tesla_location()
+    try:
         lat = str(tesla_data['latitude'])
         lon = str(tesla_data['longitude'])
         data = {'lat': lat, 'lon': lon, 'speed': tesla_data['speed']}
         json_data = json.dumps(data)
+    except Exception as e:
+        logger.error("tesla_get_location::::: Issue getting location::::: " + str(e))
+        raise
     return json_data
 
 
