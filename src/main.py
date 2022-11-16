@@ -4,38 +4,19 @@ import json
 
 def tesla_get_location(request):
     with teslapy.Tesla('REMOVED') as tesla:
+        wanted_key = 'drive_state'
         vehicles = tesla.vehicle_list()
         vehicles[0].sync_wake_up()
-        tesla_data = vehicles[0].api('VEHICLE_DATA')['response']['drive_state']
-
-        lat = str(tesla_data['latitude'])
-        lon = str(tesla_data['longitude'])
-        data = {'lat': lat, 'lon': lon, 'speed': tesla_data['speed']}
-        json_data = json.dumps(data)
-    return json_data
-
-
+        tesla_data = vehicles[0].api('VEHICLE_DATA')
+        if type(tesla_data) is not teslapy.JsonDict or wanted_key not in tesla_data['response']:
+            return []
+        else:
+            drive_state = tesla_data['response'][wanted_key]
+            lat = str(drive_state['latitude'])
+            lon = str(drive_state['longitude'])
+            data = {'lat': lat, 'lon': lon, 'speed': drive_state['speed']}
+            return json.dumps(data)
 
 #
-# import json
-# import teslapy
-# from logs import logger
-#
-#
-# def tesla_get_location(request):
-#     try:
-#         with teslapy.Tesla('REMOVED') as tesla:
-#             vehicles = tesla.vehicle_list()
-#             vehicles[0].sync_wake_up()
-#             tesla_data = vehicles[0].api('VEHICLE_DATA')['response']['drive_state']
-#             lat = str(tesla_data['latitude'])
-#             lon = str(tesla_data['longitude'])
-#             if lat and lon:
-#                 data = {'lat': lat, 'lon': lon, 'speed': tesla_data['speed']}
-#                 json_data = json.dumps(data)
-#             else:
-#                 raise ValueError("tesla_get_location::::: Either lat or lon is empty")
-#         return json_data
-#     except Exception as e:
-#         logger.error("tesla_get_location::::: Issue getting location::::: " + str(e))
-#         raise
+# if __name__ == "__main__":
+#     print(tesla_get_location(''))
