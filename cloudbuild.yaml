@@ -11,5 +11,8 @@ steps:
   - --source=src
   - --trigger-http
   - --runtime=python39
+  - --memory=128
+  - --min-instances=1
+  - --max-instances=2
 options:
   logging: CLOUD_LOGGING_ONLY
