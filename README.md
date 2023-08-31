@@ -10,5 +10,5 @@
 
 
 # Optional
-- [Secret Manager](src/secret_manager.py): You can choose to store your cache.json file in GCP Secret manager or store it locally. You can use secret_manager.py script to assist with this.
+- [Secret Manager](secret_manager.py): You can choose to store your cache.json file in GCP Secret manager or store it locally. You can use secret_manager.py script to assist with this.
 - [Cloud Build](cloudbuild.yaml): can use [cloudbuild.yaml](cloudbuild.yaml) to build out the Cloud Function.

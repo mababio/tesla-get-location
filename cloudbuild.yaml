@@ -2,9 +2,15 @@ steps:
 - name: python
   entrypoint: pip
   args: [ "install", "google-cloud-secret-manager", "--user" ]
+
 - name: python
   entrypoint: python
-  args: [ "src/secret_manager.py", download , "src/cache.json", tesla_cred, $PROJECT_NUMBER ]
+  args: [ "secret_manager.py", download ,"src/settings.toml", tap_settings_files, $PROJECT_NUMBER ]
+  id: load_settings_toml
+
+- name: python
+  entrypoint: python
+  args: [ "secret_manager.py", download , "src/cache.json", tesla_cred, $PROJECT_NUMBER ]
   id: secret_manager
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args:

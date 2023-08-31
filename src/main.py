@@ -1,9 +1,10 @@
 import teslapy
 import json
+from config import settings
 
 
 def tesla_get_location(request):
-    with teslapy.Tesla('REMOVED') as tesla:
+    with teslapy.Tesla(settings['production']['tesla']['username']) as tesla:
         wanted_key = 'drive_state'
         vehicles = tesla.vehicle_list()
         vehicles[0].sync_wake_up()
