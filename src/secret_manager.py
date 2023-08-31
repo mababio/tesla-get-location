@@ -13,7 +13,8 @@ def download(file, secret_name, project_number):
     with open(file, 'w') as outfile:
         outfile.write(pwd)
 
-
+# Make sure to create the secret first from the GCP console: https://cloud.google.com/secret-manager/docs/create-secret-quickstart#secretmanager-quickstart-console
+# The below upload function only updates the secret, not create.
 def upload(file, secret_name, project_number):
     # Build the resource name of the parent secret.
     parent = client_secret_manager.secret_path(project_number, secret_name)
