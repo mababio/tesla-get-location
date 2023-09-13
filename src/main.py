@@ -4,6 +4,11 @@ from config import settings
 
 
 def tesla_get_location(request):
+    """
+    wrapper around the TeslaPy Python module that returns car's location in lat,lon format
+    :param request: internal GCP Function param
+    :return: location if available
+    """
     with teslapy.Tesla(settings['production']['tesla']['username']) as tesla:
         wanted_key = 'drive_state'
         vehicles = tesla.vehicle_list()
